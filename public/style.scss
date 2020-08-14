@@ -6,7 +6,7 @@
 
 body {
   color: #333;
-  font-family: Arial, Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(194, 226, 238);
 }
 
@@ -77,10 +77,10 @@ h1 {
     border-radius: 0.3em;
     font-weight: bold;
     cursor: pointer;
-  }
 
-  input[type='submit']:hover {
-    background-color: #ff6347;
+    &:hover {
+      background-color: #ff6347;
+    }
   }
 
   .difficulty-instr {
@@ -94,5 +94,56 @@ h1 {
     label {
       margin: 0.4rem 1.1rem 0.4rem 0.3rem;
     }
+  }
+}
+
+.btn-list {
+  background-color: #00f;
+  color: #fff;
+  padding: 0.3em 0.5em;
+  margin: 3rem 0 2rem 0;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.3em;
+
+  &:hover {
+    background-color: rgb(0, 0, 156);
+  }
+}
+
+hr.break {
+  margin-top: 3rem;
+  width: 75%;
+  border-top: 1px solid #333;
+}
+
+.card {
+  border-radius: 4px;
+  background-color: #fafafa;
+  border: 1px solid #b5b5b5;
+  margin-bottom: 1rem;
+  padding: 1rem;
+
+  .list {
+    list-style: none;
+    margin-left: 1rem;
+  }
+
+  li {
+    padding: 0.2em;
+    border-bottom: 1px solid rgb(178, 178, 178);
+    margin-bottom: 0.7rem;
+  }
+
+  .item-correct {
+    background-color: rgb(132, 255, 132);
+  }
+
+  .question {
+    margin-bottom: 1rem;
+  }
+
+  .difficulty {
+    margin: 1rem 0;
   }
 }

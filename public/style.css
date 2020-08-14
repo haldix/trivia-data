@@ -7,7 +7,7 @@
 
 body {
   color: #333;
-  font-family: Arial, Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #c2e2ee;
 }
 
@@ -110,5 +110,56 @@ h1 {
 
 .form .difficulty label {
   margin: 0.4rem 1.1rem 0.4rem 0.3rem;
+}
+
+.btn-list {
+  background-color: #00f;
+  color: #fff;
+  padding: 0.3em 0.5em;
+  margin: 3rem 0 2rem 0;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.3em;
+}
+
+.btn-list:hover {
+  background-color: #00009c;
+}
+
+hr.break {
+  margin-top: 3rem;
+  width: 75%;
+  border-top: 1px solid #333;
+}
+
+.card {
+  border-radius: 4px;
+  background-color: #fafafa;
+  border: 1px solid #b5b5b5;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.card .list {
+  list-style: none;
+  margin-left: 1rem;
+}
+
+.card li {
+  padding: 0.2em;
+  border-bottom: 1px solid #b2b2b2;
+  margin-bottom: 0.7rem;
+}
+
+.card .item-correct {
+  background-color: #84ff84;
+}
+
+.card .question {
+  margin-bottom: 1rem;
+}
+
+.card .difficulty {
+  margin: 1rem 0;
 }
 /*# sourceMappingURL=style.css.map */

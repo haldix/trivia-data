@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('form').addEventListener('submit', handleForm);
   const inputVals = document.querySelectorAll('input[type="text"]');
   inputVals.forEach((el) => el.addEventListener('blur', valLength));
+  document.getElementById('btn-list').addEventListener('click', showList);
+  const data = document.getElementById('data');
 });
 
 async function handleForm(e) {
@@ -52,4 +54,32 @@ function convertFDtoJSON(formData) {
     obj[key] = formData.get(key);
   }
   return JSON.stringify(obj);
+}
+
+async function showList() {
+  let url = 'http://localhost:3000/trivia/';
+  try {
+    const res = await fetch(url);
+    const questions = await res.json();
+    console.log(questions);
+    const html = questions
+      .map(
+        (q) =>
+          `<div class='card'>
+            <p class='question'>${q.question}</p>
+            <ul class="list">
+              <li class='item-correct'>${q.correct}</li>
+              <li>${q.wrong1}</li>
+              <li>${q.wrong2}</li>
+              <li>${q.wrong3}</li>
+            </ul>
+            <p class='difficulty'>difficulty: ${q.difficulty}</p>
+          </div>`
+      )
+      .join('');
+    data.innerHTML = html;
+    console.log(html);
+  } catch (err) {
+    console.log(err);
+  }
 }
