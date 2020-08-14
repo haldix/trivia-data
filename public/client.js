@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('form').addEventListener('submit', handleForm);
+  const inputVals = document.querySelectorAll('input[type="text"]');
+  inputVals.forEach((el) => el.addEventListener('blur', valLength));
 });
 
 async function handleForm(e) {
@@ -34,6 +36,14 @@ async function handleForm(e) {
   } catch (error) {
     console.warn(error);
   }
+}
+
+function valLength(e) {
+  let val = e.target.value;
+  if (val.trim().length > 75) {
+    alert('Please limit input length to 75 characters maximum.');
+  }
+  return;
 }
 
 function convertFDtoJSON(formData) {
