@@ -79,7 +79,7 @@ h1 {
   border-radius: 0.4rem;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 770px) {
   .form {
     width: 65vw;
   }
@@ -127,7 +127,7 @@ h1 {
   padding: 0.3em 0.5em;
   margin-top: 1rem;
   color: #fff;
-  background-color: #fa310e;
+  background-color: #f00;
   border: 0;
   border-radius: 0.3em;
   font-weight: bold;
@@ -137,7 +137,7 @@ h1 {
 }
 
 .form input[type='submit']:hover {
-  background-color: #ff6347;
+  background-color: #c30000;
 }
 
 .form .difficulty-instr {

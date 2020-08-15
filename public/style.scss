@@ -62,7 +62,7 @@ h1 {
   border: 1px solid #ddd;
   border-radius: 0.4rem;
 
-  @media (max-width: 700px) {
+  @media (max-width: 770px) {
     width: 65vw;
   }
 
@@ -86,12 +86,12 @@ h1 {
     padding: 0.3em 0.5em;
     border: solid 1px #333;
     border-radius: 0.3em;
-  }
 
-  input[type='text']:focus {
-    outline: none;
-    border-width: 2px;
-    box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.4);
+    &:focus {
+      outline: none;
+      border-width: 2px;
+      box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.4);
+    }
   }
 
   input[name='correct'] {
@@ -107,7 +107,7 @@ h1 {
     padding: 0.3em 0.5em;
     margin-top: 1rem;
     color: #fff;
-    background-color: #fa310e;
+    background-color: #f00;
     border: 0;
     border-radius: 0.3em;
     font-weight: bold;
@@ -115,7 +115,7 @@ h1 {
     transition: all 0.3s ease-in;
 
     &:hover {
-      background-color: #ff6347;
+      background-color: rgb(195, 0, 0);
     }
   }
 
