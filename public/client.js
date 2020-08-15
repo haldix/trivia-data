@@ -20,7 +20,8 @@ async function handleForm(e) {
   let jsonData = await convertFDtoJSON(fd);
 
   //send the request with the formdata
-  let url = 'http://localhost:3000/trivia/';
+  //let url = 'http://localhost:3000/trivia/';
+  let url = 'https://bible-trivia-data.herokuapp.com/trivia';
   let h = new Headers();
   h.append('Content-type', 'application/json');
 
@@ -57,7 +58,8 @@ function convertFDtoJSON(formData) {
 }
 
 async function showList() {
-  let url = 'http://localhost:3000/trivia/';
+  //let url = 'http://localhost:3000/trivia/';
+  let url = 'https://bible-trivia-data.herokuapp.com/trivia';
   try {
     const res = await fetch(url);
     const questions = await res.json();
