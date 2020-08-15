@@ -2,6 +2,10 @@ const express = require('express');
 const Trivia = require('./models/trivia');
 const router = express.Router();
 
+router.get('/wake', async (req, res) => {
+  res.json({ connected: true });
+});
+
 router.get('/', async (req, res) => {
   try {
     const questions = await Trivia.find();
