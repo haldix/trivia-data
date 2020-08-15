@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
   inputVals.forEach((el) => el.addEventListener('blur', valLength));
   document.getElementById('btn-list').addEventListener('click', showList);
   const data = document.getElementById('data');
+  wakeHeroku();
 });
+
+//let url = 'http://localhost:3000/trivia/';
+let url = 'https://bible-trivia-data.herokuapp.com/trivia';
 
 async function handleForm(e) {
   confirm('Save this Question?');
@@ -20,8 +24,6 @@ async function handleForm(e) {
   let jsonData = await convertFDtoJSON(fd);
 
   //send the request with the formdata
-  //let url = 'http://localhost:3000/trivia/';
-  let url = 'https://bible-trivia-data.herokuapp.com/trivia';
   let h = new Headers();
   h.append('Content-type', 'application/json');
 
@@ -58,8 +60,6 @@ function convertFDtoJSON(formData) {
 }
 
 async function showList() {
-  //let url = 'http://localhost:3000/trivia/';
-  let url = 'https://bible-trivia-data.herokuapp.com/trivia';
   try {
     const res = await fetch(url);
     const questions = await res.json();
@@ -83,5 +83,15 @@ async function showList() {
     console.log(html);
   } catch (err) {
     console.log(err);
+  }
+}
+
+async function wakeHeroku() {
+  const res = await fetch(`${url}/wake`);
+  const json = await res.json();
+  const dbText = document.getElementById('db-text');
+  if (json.connected) {
+    dbText.innerText = 'ON';
+    dbText.classList.add('connected');
   }
 }
