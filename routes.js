@@ -3,6 +3,10 @@ const Trivia = require('./models/trivia');
 const router = express.Router();
 
 router.get('/wake', async (req, res) => {
+  const test = await Trivia.find({
+    question: 'What is the first book of the Bible?',
+  });
+  if (test.length === 0) return res.json({ connected: false });
   res.json({ connected: true });
 });
 
