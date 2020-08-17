@@ -21,7 +21,7 @@ body {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
-  padding: 0.4rem;
+  padding: 0.6rem;
   color: #fff;
   background-color: #333;
   margin-bottom: 2rem;
@@ -33,6 +33,7 @@ body {
 }
 
 .header .db-text {
+  font-size: 0.8em;
   background-color: #f00;
   font-weight: bold;
   display: inline-block;
@@ -177,6 +178,20 @@ h3 {
 
 .btn-list:hover {
   background-color: #00009c;
+}
+
+.btn-refresh {
+  background-color: purple;
+  display: none;
+  margin-left: 1.5rem;
+}
+
+.btn-refresh:hover {
+  background-color: #4f004f;
+}
+
+.show {
+  display: inline-block;
 }
 
 hr.break {

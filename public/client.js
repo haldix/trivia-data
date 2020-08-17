@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
   inputVals.forEach((el) => el.addEventListener('blur', valLength));
   const btnList = document.getElementById('btn-list');
   btnList.addEventListener('click', showList);
+  const btnRefresh = document.getElementById('btn-refresh');
+  btnRefresh.addEventListener('click', refreshData);
+  const firstInput = document.querySelector('input[name="question"]');
+  firstInput.focus();
   const savedData = document.getElementById('saved-data');
   //let url = 'http://localhost:3000/trivia/';
   let url = 'https://bible-trivia-data.herokuapp.com/trivia';
@@ -63,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dataShow) {
       btnList.innerText = 'Show Saved Questions';
       savedData.innerHTML = '';
+      btnRefresh.classList.remove('show');
       dataShow = false;
       return;
     }
@@ -71,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const questions = await res.json();
       dataShow = true;
       btnList.innerText = 'Hide Saved Questions';
+      btnRefresh.classList.add('show');
       const html = questions
         .map(
           (q) =>
@@ -90,6 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  async function refreshData() {
+    dataShow = false;
+    await showList();
   }
 
   async function wakeHeroku() {
