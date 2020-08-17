@@ -1,3 +1,5 @@
+$color-primary: #333;
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-  color: #333;
+  color: $color-primary;
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(194, 226, 238);
 }
@@ -16,7 +18,7 @@ body {
   align-items: start;
   padding: 0.4rem;
   color: #fff;
-  background-color: #333;
+  background-color: $color-primary;
   margin-bottom: 2rem;
 
   .db-on {
@@ -54,6 +56,10 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  margin-top: 2rem;
+}
+
 .form {
   width: 45vw;
   min-width: 300px;
@@ -84,7 +90,7 @@ h1 {
     width: 100%;
     background-color: rgb(228, 235, 238);
     padding: 0.3em 0.5em;
-    border: solid 1px #333;
+    border: solid 1px $color-primary;
     border-radius: 0.3em;
 
     &:focus {
@@ -152,7 +158,7 @@ h1 {
 hr.break {
   margin-top: 3rem;
   width: 75%;
-  border-top: 1px solid #333;
+  border-top: 1px solid $color-primary;
 }
 
 .card {

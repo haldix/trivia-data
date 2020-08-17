@@ -70,6 +70,10 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  margin-top: 2rem;
+}
+
 .form {
   width: 45vw;
   min-width: 300px;
