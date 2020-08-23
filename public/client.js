@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       savedData.innerHTML = '';
       btnRefresh.classList.remove('show');
       select.classList.remove('show');
+      console.log(count);
       count.classList.remove('show');
       dataShow = false;
       return;

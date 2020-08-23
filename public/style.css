@@ -205,6 +205,7 @@ h3 {
 
 .count {
   font-weight: bold;
+  display: none;
   margin: 1rem 0;
 }
 
