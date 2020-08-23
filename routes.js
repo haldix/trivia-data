@@ -16,21 +16,19 @@ router.get('/wake', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const questions = await Trivia.find();
-    const count = questions.length;
-    res.status(200).json({ questions, count });
+    res.status(200).json(questions);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 });
 
 // Get questions by difficutly
 router.get('/level', async (req, res) => {
   try {
-    console.log('query', req.query);
-    const questions = await Trivia.find({ difficulty: req.query.difficulty });
-    const count = questions.length;
+    let obj = req.query.difficulty === 'all' ? {} : req.query;
+    const questions = await Trivia.find(obj);
 
-    res.json({ questions, count });
+    res.status(200).json(questions);
   } catch (err) {
     console.error(err);
   }
@@ -43,7 +41,7 @@ router.post('/', async (req, res) => {
     await Trivia.create(question);
     res.status(201).json({ msg: 'data saved' });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 });
 
