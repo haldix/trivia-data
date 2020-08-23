@@ -60,9 +60,18 @@
       <h3>Thanks for your contributions!</h3>
       <hr class="break" aria-hidden="true" />
       <div class="btn-cont">
-        <button id="btn-list" class="btn-list">Show Saved Questions</button>
-        <button id="btn-refresh" class="btn-list btn-refresh">Refresh</button>
+        <button id="btn-list" class="btn btn-list">Show Saved Questions</button>
+        <form id="select" class="select">
+          <select id="sorting" class="btn btn-list sorting" name="sorting">
+            <option value="all" selected>All Levels</option>
+            <option value="easy">Easy Only</option>
+            <option value="medium">Medium Only</option>
+            <option value="hard">Hard Only</option>
+          </select>
+        </form>
+        <button id="btn-refresh" class="btn btn-refresh">Refresh</button>
       </div>
+      <p id="count" class="count"></p>
       <div id="saved-data" class="data"></div>
     </div>
   </body>

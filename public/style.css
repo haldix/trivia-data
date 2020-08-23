@@ -164,16 +164,26 @@ h3 {
   margin: 0.4rem 1.1rem 0.4rem 0.3rem;
 }
 
-.btn-list {
-  background-color: #00f;
+.btn-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.btn {
   color: #fff;
   padding: 0.3em 0.5em;
   margin: 3rem 0 2rem 0;
   cursor: pointer;
   border: 0;
   border-radius: 0.3em;
+  margin-right: 1.5rem;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
+}
+
+.btn-list {
+  background-color: #00f;
 }
 
 .btn-list:hover {
@@ -183,11 +193,19 @@ h3 {
 .btn-refresh {
   background-color: purple;
   display: none;
-  margin-left: 1.5rem;
 }
 
 .btn-refresh:hover {
   background-color: #4f004f;
+}
+
+.select {
+  display: none;
+}
+
+.count {
+  font-weight: bold;
+  margin: 1rem 0;
 }
 
 .show {

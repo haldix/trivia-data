@@ -6,11 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   btnList.addEventListener('click', showList);
   const btnRefresh = document.getElementById('btn-refresh');
   btnRefresh.addEventListener('click', refreshData);
+  const select = document.getElementById('select');
+  select.addEventListener('change', sortLevel);
+  const sorting = document.getElementById('sorting');
   const firstInput = document.querySelector('input[name="question"]');
   firstInput.focus();
   const savedData = document.getElementById('saved-data');
-  //let url = 'http://localhost:3000/trivia/';
-  let url = 'https://bible-trivia-data.herokuapp.com/trivia';
+
+  let url = 'http://localhost:3000/trivia/';
+  //let url = 'https://bible-trivia-data.herokuapp.com/trivia';
   wakeHeroku();
 
   async function handleForm(e) {
@@ -42,10 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Response from server');
       console.log(data);
     } catch (error) {
-      console.warn(error);
+      console.error(error);
     }
   }
 
+  // alert if input too long
   function valLength(e) {
     let val = e.target.value;
     if (val.trim().length > 75) {
@@ -62,12 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return JSON.stringify(obj);
   }
 
+  // Show list of saved questions
   let dataShow = false;
   async function showList() {
     if (dataShow) {
       btnList.innerText = 'Show Saved Questions';
       savedData.innerHTML = '';
       btnRefresh.classList.remove('show');
+      select.classList.remove('show');
+      count.classList.remove('show');
       dataShow = false;
       return;
     }
@@ -77,10 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
       dataShow = true;
       btnList.innerText = 'Hide Saved Questions';
       btnRefresh.classList.add('show');
-      const html = questions
-        .map(
-          (q) =>
-            `<div class='card'>
+      select.classList.add('show');
+      count.classList.add('show');
+      count.innerText = `${questions.length} total questions`;
+      await render(questions);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function render(questions) {
+    const html = questions
+      .map(
+        (q) =>
+          `<div class='card'>
             <p class='question'>${q.question}</p>
             <ul class="list">
               <li class='item-correct'>${q.correct}</li>
@@ -90,19 +108,19 @@ document.addEventListener('DOMContentLoaded', () => {
             </ul>
             <p class='difficulty'>difficulty: ${q.difficulty}</p>
           </div>`
-        )
-        .join('');
-      savedData.innerHTML = html;
-    } catch (err) {
-      console.log(err);
-    }
+      )
+      .join('');
+    savedData.innerHTML = html;
   }
 
+  // refresh list of saved data
   async function refreshData() {
     dataShow = false;
     await showList();
+    sorting.value = 'all';
   }
 
+  // wake heroku back-end server on page load
   async function wakeHeroku() {
     const res = await fetch(`${url}/wake`);
     const json = await res.json();
@@ -111,6 +129,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (json.connected) {
       dbText.innerText = 'ON';
       dbText.classList.add('connected');
+    }
+  }
+
+  // sort saved data list by question difficulty
+  async function sortLevel(e) {
+    const query = e.target.value;
+    let url = `/trivia/level?difficulty=${query}`;
+    try {
+      const res = await fetch(url);
+      const questions = await res.json();
+      count.innerText = `${
+        questions.length
+      } ${query.toUpperCase()} level questions`;
+      render(questions);
+    } catch (err) {
+      console.error(err);
     }
   }
 });
