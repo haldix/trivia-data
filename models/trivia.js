@@ -35,7 +35,7 @@ const triviaSchema = new mongoose.Schema(
       maxlength: 75,
       isCorrect: false,
       required: true,
-    }, 
+    },
     difficulty: {
       type: String,
       required: true,
