@@ -135,9 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // sort saved data list by question difficulty
   async function sortLevel(e) {
     const query = e.target.value;
-    let url = `/trivia/level?difficulty=${query}`;
+    let sortUrl = `${url}/level?difficulty=${query}`;
     try {
-      const res = await fetch(url);
+      const res = await fetch(sortUrl);
       const questions = await res.json();
       count.innerText = `${
         questions.length
