@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   firstInput.focus();
   const savedData = document.getElementById('saved-data');
 
-  let url = 'http://localhost:3000/trivia/';
-  //let url = 'https://bible-trivia-data.herokuapp.com/trivia';
+  //let url = 'http://localhost:3000/trivia/';
+  let url = 'https://bible-trivia-data.herokuapp.com/trivia';
   wakeHeroku();
 
   async function handleForm(e) {
