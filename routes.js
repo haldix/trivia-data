@@ -25,10 +25,32 @@ router.get('/', async (req, res) => {
 // Get questions by difficutly
 router.get('/level', async (req, res) => {
   try {
-    let obj = req.query.difficulty === 'all' ? {} : req.query;
-    const questions = await Trivia.find(obj);
+    let obj =
+      req.query.difficulty === 'all'
+        ? {}
+        : { difficulty: req.query.difficulty };
 
-    res.status(200).json(questions);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 6;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const results = {};
+
+    results.count = await Trivia.countDocuments(obj);
+    if (endIndex < results.count) {
+      results.next = {
+        page: page + 1,
+      };
+    }
+
+    if (page > 1) {
+      results.prev = {
+        page: page - 1,
+      };
+    }
+
+    results.questions = await Trivia.find(obj).limit(limit).skip(startIndex);
+    res.status(200).json(results);
   } catch (err) {
     console.error(err);
   }
