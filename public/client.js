@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const countText = document.getElementById('count-text');
   const btnNext = document.getElementById('btn-next');
   const btnPrev = document.getElementById('btn-prev');
+  const toggles = document.querySelectorAll('.toggle');
 
   //let url = 'http://localhost:3000/trivia/';
   let url = 'https://bible-trivia-data.herokuapp.com/trivia';
@@ -76,11 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dataShow) {
       btnList.innerText = 'Show Saved Questions';
       savedData.innerHTML = '';
-      btnRefresh.classList.remove('show');
-      select.classList.remove('show');
-      countText.classList.remove('show');
-      btnNext.classList.remove('show');
-      btnPrev.classList.remove('show');
+      toggles.forEach((el) => el.classList.remove('show'));
       dataShow = false;
       return;
     }
@@ -88,11 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await pageSort(1, 'all');
       dataShow = true;
       btnList.innerText = 'Hide Saved Questions';
-      btnRefresh.classList.add('show');
-      select.classList.add('show');
-      countText.classList.add('show');
-      btnNext.classList.add('show');
-      btnPrev.classList.add('show');
+      toggles.forEach((el) => el.classList.add('show'));
     } catch (err) {
       console.error(err);
     }
@@ -124,18 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sorting.value = 'all';
   }
 
-  // wake heroku back-end server on page load
-  async function wakeHeroku() {
-    const res = await fetch(`${url}/wake`);
-    const json = await res.json();
-    const dbText = document.getElementById('db-text');
-    console.log('jsonC', json);
-    if (json.connected) {
-      dbText.innerText = 'ON';
-      dbText.classList.add('connected');
-    }
-  }
-
   // Fetch sorted and paginated data
   limit = 4;
   let page = 1;
@@ -143,11 +124,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let nextPage;
   query = 'all';
 
+  // handle select input for difficulty level
   async function sortLevel(e) {
     query = e.target.value;
     await pageSort(1, query);
   }
 
+  //pagination
   btnPrev.addEventListener('click', async () => {
     await pageSort(prevPage, query);
   });
@@ -156,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await pageSort(nextPage, query);
   });
 
+  // fetch data from back-end
   async function pageSort(page, query) {
     let sortUrl = `${url}/level?difficulty=${query}&page=${page}&limit=${limit}`;
     try {
@@ -170,6 +154,17 @@ document.addEventListener('DOMContentLoaded', () => {
       render(questions);
     } catch (err) {
       console.error(err);
+    }
+  }
+
+  // wake heroku back-end server on page load
+  async function wakeHeroku() {
+    const res = await fetch(`${url}/wake`);
+    const json = await res.json();
+    const dbText = document.getElementById('db-text');
+    if (json.connected) {
+      dbText.innerText = 'ON';
+      dbText.classList.add('connected');
     }
   }
 });

@@ -61,7 +61,7 @@
       <hr class="break" aria-hidden="true" />
       <div class="btn-cont">
         <button id="btn-list" class="btn btn-list">Show Saved Questions</button>
-        <form id="select" class="select">
+        <form id="select" class="select toggle">
           <select id="sorting" class="btn btn-list sorting" name="sorting">
             <option value="all" selected>All Levels</option>
             <option value="easy">Easy Only</option>
@@ -69,15 +69,15 @@
             <option value="hard">Hard Only</option>
           </select>
         </form>
-        <button id="btn-refresh" class="btn btn-refresh">Refresh</button>
+        <button id="btn-refresh" class="btn btn-refresh toggle">Refresh</button>
       </div>
-      <p id="count-text" class="count-text"></p>
+      <p id="count-text" class="count-text toggle"></p>
       <div id="saved-data" class="data"></div>
       <div class="pagination">
-        <button id="btn-prev" class="btn btn-page" disabled>
+        <button id="btn-prev" class="btn btn-page toggle" disabled>
           <span><&nbsp;</span>Prev
         </button>
-        <button id="btn-next" class="btn btn-page">
+        <button id="btn-next" class="btn btn-page toggle">
           Next<span>&nbsp;></span>
         </button>
       </div>
