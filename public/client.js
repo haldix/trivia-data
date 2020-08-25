@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnNext = document.getElementById('btn-next');
   const btnPrev = document.getElementById('btn-prev');
 
-  let url = 'http://localhost:3000/trivia/';
-  //let url = 'https://bible-trivia-data.herokuapp.com/trivia';
+  //let url = 'http://localhost:3000/trivia/';
+  let url = 'https://bible-trivia-data.herokuapp.com/trivia';
   wakeHeroku();
 
   async function handleForm(e) {
