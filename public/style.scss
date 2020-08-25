@@ -173,18 +173,28 @@ h3 {
   }
 }
 
+.btn-page {
+  background-color: tomato;
+  display: none;
+
+  &[disabled] {
+    background-color: #aaa;
+    cursor: none;
+  }
+
+  &:not([disabled]):hover {
+    background-color: rgb(217, 70, 45);
+  }
+}
+
 .select {
   display: none;
 }
 
-.count {
+.count-text {
   font-weight: bold;
   display: none;
   margin: 1rem 0;
-}
-
-.show {
-  display: inline-block;
 }
 
 hr.break {
@@ -228,4 +238,8 @@ hr.break {
   .difficulty {
     margin: 1rem 0;
   }
+}
+
+.show {
+  display: inline-block;
 }

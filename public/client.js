@@ -12,9 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const firstInput = document.querySelector('input[name="question"]');
   firstInput.focus();
   const savedData = document.getElementById('saved-data');
+  const countText = document.getElementById('count-text');
+  const btnNext = document.getElementById('btn-next');
+  const btnPrev = document.getElementById('btn-prev');
 
-  //let url = 'http://localhost:3000/trivia/';
-  let url = 'https://bible-trivia-data.herokuapp.com/trivia';
+  let url = 'http://localhost:3000/trivia/';
+  //let url = 'https://bible-trivia-data.herokuapp.com/trivia';
   wakeHeroku();
 
   async function handleForm(e) {
@@ -75,21 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
       savedData.innerHTML = '';
       btnRefresh.classList.remove('show');
       select.classList.remove('show');
-      console.log(count);
-      count.classList.remove('show');
+      countText.classList.remove('show');
+      btnNext.classList.remove('show');
+      btnPrev.classList.remove('show');
       dataShow = false;
       return;
     }
     try {
-      const res = await fetch(url);
-      const questions = await res.json();
+      await pageSort(1, 'all');
       dataShow = true;
       btnList.innerText = 'Hide Saved Questions';
       btnRefresh.classList.add('show');
       select.classList.add('show');
-      count.classList.add('show');
-      count.innerText = `${questions.length} total questions`;
-      await render(questions);
+      countText.classList.add('show');
+      btnNext.classList.add('show');
+      btnPrev.classList.add('show');
     } catch (err) {
       console.error(err);
     }
@@ -133,16 +136,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // sort saved data list by question difficulty
+  // Fetch sorted and paginated data
+  limit = 4;
+  let page = 1;
+  let prevPage;
+  let nextPage;
+  query = 'all';
+
   async function sortLevel(e) {
-    const query = e.target.value;
-    let sortUrl = `${url}/level?difficulty=${query}`;
+    query = e.target.value;
+    await pageSort(1, query);
+  }
+
+  btnPrev.addEventListener('click', async () => {
+    await pageSort(prevPage, query);
+  });
+
+  btnNext.addEventListener('click', async () => {
+    await pageSort(nextPage, query);
+  });
+
+  async function pageSort(page, query) {
+    let sortUrl = `${url}/level?difficulty=${query}&page=${page}&limit=${limit}`;
     try {
       const res = await fetch(sortUrl);
-      const questions = await res.json();
-      count.innerText = `${
-        questions.length
-      } ${query.toUpperCase()} level questions`;
+      const results = await res.json();
+      const { questions, prev, next, count } = results;
+      prevPage = prev ? prev.page : null;
+      nextPage = next ? next.page : null;
+      btnPrev.disabled = !prev;
+      btnNext.disabled = !next;
+      countText.innerText = `${count} ${query.toUpperCase()} level questions`;
       render(questions);
     } catch (err) {
       console.error(err);

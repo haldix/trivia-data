@@ -199,18 +199,28 @@ h3 {
   background-color: #4f004f;
 }
 
+.btn-page {
+  background-color: tomato;
+  display: none;
+}
+
+.btn-page[disabled] {
+  background-color: #aaa;
+  cursor: none;
+}
+
+.btn-page:not([disabled]):hover {
+  background-color: #d9462d;
+}
+
 .select {
   display: none;
 }
 
-.count {
+.count-text {
   font-weight: bold;
   display: none;
   margin: 1rem 0;
-}
-
-.show {
-  display: inline-block;
 }
 
 hr.break {
@@ -256,5 +266,9 @@ hr.break {
 
 .card .difficulty {
   margin: 1rem 0;
+}
+
+.show {
+  display: inline-block;
 }
 /*# sourceMappingURL=style.css.map */
