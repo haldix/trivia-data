@@ -1,6 +1,7 @@
 const express = require('express');
 const Trivia = require('./models/trivia');
 const writeToFS = require('./backup');
+
 const router = express.Router();
 
 // Wake heroku server
@@ -9,7 +10,7 @@ router.get('/wake', async (req, res) => {
     question: 'What is the first book of the Bible?',
   });
   if (test.length === 0) return res.json({ connected: false });
-  res.json({ connected: true });
+  return res.json({ connected: true });
 });
 
 // Get all questions
@@ -22,16 +23,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get questions by difficutly
+// Get questions by difficutly & paginate
 router.get('/level', async (req, res) => {
   try {
-    let obj =
+    const obj =
       req.query.difficulty === 'all'
         ? {}
         : { difficulty: req.query.difficulty };
 
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 6;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 6;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const results = {};
@@ -71,6 +72,7 @@ router.post('/', async (req, res) => {
 router.get('/backup', async (req, res) => {
   const questions = await Trivia.find();
   writeToFS('saved.txt', questions);
+  res.end();
 });
 
 module.exports = router;

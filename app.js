@@ -13,8 +13,10 @@ const app = express();
 
 // Dev Tools
 if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line
   const morgan = require('morgan');
   app.use(morgan('dev'));
+  // eslint-disable-next-line
   require('dotenv').config();
 }
 
@@ -44,7 +46,7 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(hpp());
 
-//Routes
+// Routes
 app.use('/trivia', triviaRouter);
 
 app.all('*', (req, res) => {
