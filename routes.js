@@ -71,6 +71,7 @@ router.post('/', async (req, res) => {
 router.get('/backup', async (req, res) => {
   const questions = await Trivia.find();
   writeToFS('saved.txt', questions);
+  res.end();
 });
 
 module.exports = router;
