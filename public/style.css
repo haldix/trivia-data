@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -16,11 +16,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  -ms-flex-align: start;
+  align-items: start;
   padding: 0.6rem;
   color: #fff;
   background-color: #333;
@@ -56,14 +56,14 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 h1 {
@@ -116,7 +116,7 @@ h3 {
   outline: none;
   border-width: 2px;
   -webkit-box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.4);
-          box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.4);
 }
 
 .form input[name='correct'] {
@@ -154,10 +154,10 @@ h3 {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .form .difficulty label {
@@ -200,7 +200,7 @@ h3 {
 }
 
 .btn-page {
-  background-color: tomato;
+  background-color: rgb(0, 152, 0);
   display: none;
 }
 
@@ -210,7 +210,7 @@ h3 {
 }
 
 .btn-page:not([disabled]):hover {
-  background-color: #d9462d;
+  background-color: rgb(0, 118, 0);
 }
 
 .select {

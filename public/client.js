@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   wakeHeroku();
 
+  // SAVE FORM DATA TO DB
+
   function convertFDtoJSON(formData) {
     const obj = {};
     // eslint-disable-next-line
@@ -35,52 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
       obj[key] = formData.get(key);
     }
     return JSON.stringify(obj);
-  }
-
-  function render(questions) {
-    const html = questions
-      .map(
-        (q) =>
-          `<div class='card'>
-            <p class='question'>${q.question}</p>
-            <ul class="list">
-              <li class='item-correct'>${q.correct}</li>
-              <li>${q.wrong1}</li>
-              <li>${q.wrong2}</li>
-              <li>${q.wrong3}</li>
-            </ul>
-            <p class='difficulty'>difficulty: ${q.difficulty}</p>
-          </div>`
-      )
-      .join('');
-    savedData.innerHTML = html;
-  }
-
-  // Fetch sorted and paginated data
-  const limit = 4;
-  // eslint-disable-next-line
-  let page = 1;
-  let query = 'all';
-  let prevPage;
-  let nextPage;
-
-  // fetch data from back-end
-  // eslint-disable-next-line
-  async function pageSort(page, query) {
-    const sortUrl = `${url}/level?difficulty=${query}&page=${page}&limit=${limit}`;
-    try {
-      const res = await fetch(sortUrl);
-      const results = await res.json();
-      const { questions, prev, next, count } = results;
-      prevPage = prev ? prev.page : null;
-      nextPage = next ? next.page : null;
-      btnPrev.disabled = !prev;
-      btnNext.disabled = !next;
-      countText.innerText = `${count} ${query.toUpperCase()} level questions`;
-      render(questions);
-    } catch (err) {
-      console.error(err);
-    }
   }
 
   async function handleForm(e) {
@@ -97,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const jsonData = await convertFDtoJSON(fd);
 
-    // send the request with the formdata
+    // send the request with the formdata to server
     const h = new Headers();
     h.append('Content-type', 'application/json');
 
@@ -125,6 +81,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // FETCH & RENDER DATA FROM DB
+
+  // Render fetched data
+  function render(questions) {
+    const html = questions
+      .map(
+        (q) =>
+          `<div class='card'>
+            <p class='question'>${q.question}</p>
+            <ul class="list">
+              <li class='item-correct'>${q.correct}</li>
+              <li>${q.wrong1}</li>
+              <li>${q.wrong2}</li>
+              <li>${q.wrong3}</li>
+            </ul>
+            <p class='difficulty'>difficulty: ${q.difficulty}</p>
+          </div>`
+      )
+      .join('');
+    savedData.innerHTML = html;
+  }
+
+  // Fetch sorted and paginated data from server
+  const limit = 4;
+  // eslint-disable-next-line
+  let page = 1;
+  let query = 'all';
+  let prevPage;
+  let nextPage;
+
+  // eslint-disable-next-line
+  async function pageSort(page, query) {
+    const sortUrl = `${url}/level?difficulty=${query}&page=${page}&limit=${limit}`;
+    try {
+      const res = await fetch(sortUrl);
+      const results = await res.json();
+      const { questions, prev, next, count } = results;
+      prevPage = prev ? prev.page : null;
+      nextPage = next ? next.page : null;
+      btnPrev.disabled = !prev;
+      btnNext.disabled = !next;
+      countText.innerText = `${count} ${query.toUpperCase()} level questions`;
+      render(questions);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   // Show list of saved questions
   let dataShow = false;
   async function showList() {
@@ -145,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // refresh list of saved data
+  // Refresh list of saved data
   async function refreshData() {
     dataShow = false;
     await showList();
@@ -158,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await pageSort(1, query);
   }
 
-  // pagination
+  // Event Listeners
   btnPrev.addEventListener('click', async () => {
     await pageSort(prevPage, query);
   });
