@@ -46,11 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const myForm = e.target;
     const fd = new FormData(myForm);
     form.reset();
-    // log form data contents
-    // for (let key of fd.keys()) {
-    //   console.log(key, fd.get(key));
-    // }
-
     const jsonData = await convertFDtoJSON(fd);
 
     // send the request with the formdata to server
@@ -66,8 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch(req);
       const data = await res.json();
-      console.log('Response from server');
-      console.log(data);
+      console.log('Data saved', data);
     } catch (error) {
       console.error(error);
     }
@@ -105,17 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fetch sorted and paginated data from server
   const limit = 4;
-  // eslint-disable-next-line
-  let page = 1;
-  let query = 'all';
   let prevPage;
   let nextPage;
 
-  // eslint-disable-next-line
-  async function pageSort(page, query) {
-    const sortUrl = `${url}/level?difficulty=${query}&page=${page}&limit=${limit}`;
+  async function fetchData(page = 1) {
+    const query = sorting.value;
+    const dataUrl = `${url}/level?difficulty=${query}&page=${page}&limit=${limit}`;
     try {
-      const res = await fetch(sortUrl);
+      const res = await fetch(dataUrl);
       const results = await res.json();
       const { questions, prev, next, count } = results;
       prevPage = prev ? prev.page : null;
@@ -131,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Show list of saved questions
   let dataShow = false;
+
   async function showList() {
     if (dataShow) {
       btnList.innerText = 'Show Saved Questions';
@@ -140,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     try {
-      await pageSort(1, 'all');
+      await fetchData(1, 'all');
       dataShow = true;
       btnList.innerText = 'Hide Saved Questions';
       toggles.forEach((el) => el.classList.add('show'));
@@ -152,23 +144,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // Refresh list of saved data
   async function refreshData() {
     dataShow = false;
-    await showList();
     sorting.value = 'all';
+    await showList();
   }
 
   // handle select input for difficulty level
-  async function sortLevel(e) {
-    query = e.target.value;
-    await pageSort(1, query);
+  async function sortLevel() {
+    await fetchData();
   }
 
   // Event Listeners
   btnPrev.addEventListener('click', async () => {
-    await pageSort(prevPage, query);
+    await fetchData(prevPage);
   });
 
   btnNext.addEventListener('click', async () => {
-    await pageSort(nextPage, query);
+    await fetchData(nextPage);
   });
 
   form.addEventListener('submit', handleForm);
