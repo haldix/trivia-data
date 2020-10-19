@@ -46,11 +46,7 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(hpp());
 
-<<<<<<< HEAD
 // Routes
-=======
-//Routes
->>>>>>> back-end
 app.use('/trivia', triviaRouter);
 
 app.all('*', (req, res) => {
