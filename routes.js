@@ -1,7 +1,10 @@
 const express = require('express');
 const Trivia = require('./models/trivia');
 const writeToFS = require('./backup');
+<<<<<<< HEAD
 
+=======
+>>>>>>> back-end
 const router = express.Router();
 
 // Wake heroku server
@@ -10,7 +13,11 @@ router.get('/wake', async (req, res) => {
     question: 'What is the first book of the Bible?',
   });
   if (test.length === 0) return res.json({ connected: false });
+<<<<<<< HEAD
   return res.json({ connected: true });
+=======
+  res.json({ connected: true });
+>>>>>>> back-end
 });
 
 // Get all questions
@@ -20,6 +27,7 @@ router.get('/', async (req, res) => {
     res.status(200).json(questions);
   } catch (err) {
     console.error(err);
+<<<<<<< HEAD
   }
 });
 
@@ -57,6 +65,45 @@ router.get('/level', async (req, res) => {
   }
 });
 
+=======
+  }
+});
+
+// Get questions by difficutly
+router.get('/level', async (req, res) => {
+  try {
+    let obj =
+      req.query.difficulty === 'all'
+        ? {}
+        : { difficulty: req.query.difficulty };
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 6;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const results = {};
+
+    results.count = await Trivia.countDocuments(obj);
+    if (endIndex < results.count) {
+      results.next = {
+        page: page + 1,
+      };
+    }
+
+    if (page > 1) {
+      results.prev = {
+        page: page - 1,
+      };
+    }
+
+    results.questions = await Trivia.find(obj).limit(limit).skip(startIndex);
+    res.status(200).json(results);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+>>>>>>> back-end
 // Create new question and save
 router.post('/', async (req, res) => {
   try {
