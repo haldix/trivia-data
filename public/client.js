@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggles = document.querySelectorAll('.toggle');
 
   // let url = 'http://localhost:3000/trivia/';
-  const url = 'https://bible-trivia-data.herokuapp.com/trivia';
+  const url = 'https://trivia-data-api.herokuapp.com/trivia';
 
   // wake heroku back-end server on page load
   async function wakeHeroku() {
