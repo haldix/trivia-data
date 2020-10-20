@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPrev = document.getElementById('btn-prev');
   const toggles = document.querySelectorAll('.toggle');
 
-  // let url = 'http://localhost:3000/trivia/';
+  // const url = 'http://localhost:3000/trivia/';
   const url = 'https://trivia-data-api.herokuapp.com/trivia';
 
   // wake heroku back-end server on page load
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch(dataUrl);
       const results = await res.json();
-      const { questions, prev, next, count } = results;
-      prevPage = prev ? prev.page : null;
+      const { questions, prev, next, count } = results.data;
+      // prevPage = prev ? prev.page : null;
       nextPage = next ? next.page : null;
       btnPrev.disabled = !prev;
       btnNext.disabled = !next;
