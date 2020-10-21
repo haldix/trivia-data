@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form');
+  // const btnSubmit = document.getElementById('btn-submit');
   const inputVals = document.querySelectorAll('input[type="text"]');
   const btnList = document.getElementById('btn-list');
   const btnRefresh = document.getElementById('btn-refresh');
@@ -39,6 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return JSON.stringify(obj);
   }
 
+  // check if input too long while being filled in
+  function valLength({ target: { name, value } }) {
+    let max = name === 'question' ? 100 : 75;
+    if (value.trim().length > max) {
+      alert(`Please limit ${name} input length to ${max} characters maximum.`);
+    }
+  }
+
+  // submit form data
   async function handleForm(e) {
     // eslint-disable-next-line
     confirm('Save this Question?');
@@ -61,17 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch(req);
       const data = await res.json();
-      console.log('Data saved', data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  // alert if input too long
-  function valLength(e) {
-    const val = e.target.value;
-    if (val.trim().length > 75) {
-      alert('Please limit input length to 75 characters maximum.');
+      console.log('Data sent', data);
+      if (!data.success) {
+        alert(`Not saved: ${data.error}`);
+      }
+    } catch (err) {
+      console.error(err);
     }
   }
 
