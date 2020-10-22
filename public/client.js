@@ -90,10 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
           `<div class='card'>
             <p class='question'>${q.question}</p>
             <ul class="list">
-              <li class='item-correct'>${q.correct}</li>
-              <li>${q.wrong1}</li>
-              <li>${q.wrong2}</li>
-              <li>${q.wrong3}</li>
+              <li class='item-correct'>${q.correct_answer}</li>
+              <li>${q.wrong_answers[0]}</li>
+              <li>${q.wrong_answers[1]}</li>
+              <li>${q.wrong_answers[2]}</li>
             </ul>
             <p class='difficulty'>difficulty: ${q.difficulty}</p>
           </div>`
@@ -113,13 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch(dataUrl);
       const results = await res.json();
-      const { questions, prev, next, count } = results.data;
-      // prevPage = prev ? prev.page : null;
+      const { data, prev, next, count } = results;
+      prevPage = prev ? prev.page : null;
       nextPage = next ? next.page : null;
       btnPrev.disabled = !prev;
       btnNext.disabled = !next;
       countText.innerText = `${count} ${query.toUpperCase()} level questions`;
-      render(questions);
+      render(data);
     } catch (err) {
       console.error(err);
     }
