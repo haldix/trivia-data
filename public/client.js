@@ -1,21 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   const dataForm = document.getElementById('form-data');
-  // const btnSubmit = document.getElementById('btn-submit');
   const inputVals = dataForm.querySelectorAll('input[type="text"]');
+  const searchForm = document.getElementById('form-search');
+  const searchInput = document.getElementById('search-input');
+  const btnSearch = document.getElementById('btn-search');
+  const btnClearSearch = document.getElementById('btn-clear');
+  const hdgResults = document.getElementById('hdg-results');
+  const searchList = document.getElementById('list-search');
   const btnList = document.getElementById('btn-list');
   const btnRefresh = document.getElementById('btn-refresh');
   const select = document.getElementById('select');
   const sorting = document.getElementById('sorting');
-  // const firstInput = document.querySelector('input[name="question"]');
-  // firstInput.focus();
   const savedData = document.getElementById('saved-data');
   const countText = document.getElementById('count-text');
   const btnNext = document.getElementById('btn-next');
   const btnPrev = document.getElementById('btn-prev');
   const toggles = document.querySelectorAll('.toggle');
 
-  // const url = 'http://localhost:3000/trivia/';
-  const url = 'https://trivia-data-api.herokuapp.com/trivia';
+  const url = 'http://localhost:3000/trivia';
+  // const url = 'https://trivia-data-api.herokuapp.com/trivia';
 
   // wake heroku back-end server on page load
   async function wakeHeroku() {
@@ -158,6 +161,57 @@ document.addEventListener('DOMContentLoaded', () => {
     await fetchData();
   }
 
+  // Search API.Bible
+  async function fetchSearch(e) {
+    e.preventDefault();
+    const keywords = searchInput.value;
+    const bibleVersionID = 'de4e12af7f28f599-01';
+    const offset = 0;
+    const limit = 20;
+    const searchUrl = `${url}/search?keywords=${keywords}&bibleVersionID=${bibleVersionID}&limit=${limit}&offset=${offset}`;
+    try {
+      const res = await fetch(searchUrl);
+      const results = await res.json();
+      console.log('results', results);
+      if (results.success) {
+        showSearch(keywords, results.data);
+      } else {
+        hdgResults.innerHTML = results.message;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // render API.Bible search results
+  function showSearch(hdg, res) {
+    btnClearSearch.classList.add('show');
+    btnSearch.classList.add('hide');
+    if (res.length !== 0) {
+      hdgResults.innerHTML = `Search Results for "${hdg}"`;
+    } else {
+      hdgResults.innerHTML = `No Results found for "${hdg}"`;
+    }
+    const html = res
+      .map(
+        (v) =>
+          `<li class='list-search__item'>
+          <p class="reference">${v.reference}</p>
+          <p>${v.text}</p>
+        </li>`
+      )
+      .join('');
+    searchList.innerHTML = html;
+  }
+
+  function clearSearch() {
+    btnClearSearch.classList.remove('show');
+    btnSearch.classList.remove('hide');
+    searchForm.reset();
+    searchList.innerHTML = '';
+    hdgResults.innerHTML = '';
+  }
+
   // Event Listeners
   btnPrev.addEventListener('click', async () => {
     await fetchData(prevPage);
@@ -172,4 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
   btnList.addEventListener('click', showList);
   btnRefresh.addEventListener('click', refreshData);
   select.addEventListener('change', sortLevel);
+  btnSearch.addEventListener('click', fetchSearch);
+  btnClearSearch.addEventListener('click', clearSearch);
 });
