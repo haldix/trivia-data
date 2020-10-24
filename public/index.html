@@ -15,77 +15,136 @@
     </header>
     <div class="container">
       <h1>Bible Trivia Game Data Collection</h1>
-      <form class="form" id="form">
-        <p class="instructions">
-          Please fill in all fields and limit question to 100 characters and
-          answers to 75 characters.
-        </p>
-        <div class="input-group">
-          <label for="question">Question</label>
-          <input type="text" name="question" autocomplete="off" required />
-        </div>
-        <div class="input-group">
-          <label for="correct">Correct Answer</label>
-          <input
-            type="text"
-            name="correct_answer"
-            autocomplete="off"
-            required
-          />
-        </div>
-        <div class="input-group">
-          <label for="wrong1">Wrong Answer One</label>
-          <input type="text" name="wrong1" autocomplete="off" required />
-        </div>
-        <div class="input-group">
-          <label for="wrong2">Wrong Answer Two</label>
-          <input type="text" name="wrong2" autocomplete="off" required />
-        </div>
-        <div class="input-group">
-          <label for="wrong3">Wrong Answer Three</label>
-          <input type="text" name="wrong3" autocomplete="off" required />
-        </div>
-        <p class="difficulty-instr">Select a difficulty level:</p>
-        <div class="difficulty">
-          <input
-            type="radio"
-            id="easy"
-            name="difficulty"
-            value="easy"
-            checked
-          />
-          <label for="easy">Easy</label>
-          <input type="radio" id="medium" name="difficulty" value="medium" />
-          <label for="medium">Medium</label>
-          <input type="radio" id="hard" name="difficulty" value="hard" />
-          <label for="hard">Hard</label>
-        </div>
-        <input type="submit" value="Submit" />
-      </form>
-      <h3>Thanks for your contributions!</h3>
-      <hr class="break" aria-hidden="true" />
-      <div class="btn-cont">
-        <button id="btn-list" class="btn btn-list">Show Saved Questions</button>
-        <form id="select" class="select toggle">
-          <select id="sorting" class="btn btn-list sorting" name="sorting">
-            <option value="all" selected>All Levels</option>
-            <option value="easy">Easy Only</option>
-            <option value="medium">Medium Only</option>
-            <option value="hard">Hard Only</option>
-          </select>
+      <h2 class="title-contrib">
+        Contribute to the Bible Trivia game by submitting questions.
+      </h2>
+
+      <!-- Data Form -->
+      <section class="data-form">
+        <form class="form-data" id="form-data">
+          <p class="instructions">
+            Please fill in all fields and limit question to 100 characters and
+            answers to 75 characters.
+          </p>
+          <div class="input-group">
+            <label for="question">Question</label>
+            <input type="text" name="question" autocomplete="off" required />
+          </div>
+          <div class="input-group">
+            <label for="correct">Correct Answer</label>
+            <input
+              type="text"
+              name="correct_answer"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="wrong1">Wrong Answer One</label>
+            <input type="text" name="wrong1" autocomplete="off" required />
+          </div>
+          <div class="input-group">
+            <label for="wrong2">Wrong Answer Two</label>
+            <input type="text" name="wrong2" autocomplete="off" required />
+          </div>
+          <div class="input-group">
+            <label for="wrong3">Wrong Answer Three</label>
+            <input type="text" name="wrong3" autocomplete="off" required />
+          </div>
+          <p class="difficulty-instr">Select a difficulty level:</p>
+          <div class="difficulty">
+            <input
+              type="radio"
+              id="easy"
+              name="difficulty"
+              value="easy"
+              checked
+            />
+            <label for="easy">Easy</label>
+            <input type="radio" id="medium" name="difficulty" value="medium" />
+            <label for="medium">Medium</label>
+            <input type="radio" id="hard" name="difficulty" value="hard" />
+            <label for="hard">Hard</label>
+          </div>
+          <input type="submit" value="Submit" />
         </form>
-        <button id="btn-refresh" class="btn btn-refresh toggle">Refresh</button>
-      </div>
-      <p id="count-text" class="count-text toggle"></p>
-      <div id="saved-data" class="data"></div>
-      <div class="pagination">
-        <button id="btn-prev" class="btn btn-page toggle" disabled>
-          <span><&nbsp;</span>Prev
-        </button>
-        <button id="btn-next" class="btn btn-page toggle">
-          Next<span>&nbsp;></span>
-        </button>
-      </div>
+      </section>
+      <hr class="break" aria-hidden="true" />
+
+      <!-- Search -->
+      <section class="search">
+        <div class="search-cont">
+          <p class="details">
+            Search The King James Version of The Bible. Results will be verses
+            which containin the keywords.*
+          </p>
+          <form class="form-search" id="form-search">
+            <div class="input-cont">
+              <input
+                class="input-search"
+                id="search"
+                name="search"
+                type="text"
+                placeholder="enter search keywords"
+              />
+              <button
+                id="btn-search"
+                class="btn-submit btn-search"
+                type="submit"
+              >
+                Search
+              </button>
+              <button id="btn-clear" class="btn-search btn-clear" type="button">
+                Clear
+              </button>
+            </div>
+          </form>
+        </div>
+        <h2 id="hdg-results"></h2>
+        <ul id="list-search" class="list-search"></ul>
+      </section>
+      <hr class="break" aria-hidden="true" />
+
+      <!-- Show Saved Data -->
+      <section class="show-data">
+        <p class="details">
+          View questions and answers already in the Bible Trivia database.
+          Recently submitted entries may not be shown pending review.
+        </p>
+        <div class="btn-cont">
+          <button id="btn-list" class="btn btn-list">
+            Show Saved Questions
+          </button>
+          <form id="select" class="select toggle">
+            <select id="sorting" class="btn btn-list sorting" name="sorting">
+              <option value="all" selected>All Levels</option>
+              <option value="easy">Easy Only</option>
+              <option value="medium">Medium Only</option>
+              <option value="hard">Hard Only</option>
+            </select>
+          </form>
+          <button id="btn-refresh" class="btn btn-refresh toggle">
+            Refresh
+          </button>
+        </div>
+        <p id="count-text" class="count-text toggle"></p>
+        <div id="saved-data" class="data"></div>
+        <div class="pagination">
+          <button id="btn-prev" class="btn btn-page toggle" disabled>
+            <span><&nbsp;</span>Prev
+          </button>
+          <button id="btn-next" class="btn btn-page toggle">
+            Next<span>&nbsp;></span>
+          </button>
+        </div>
+      </section>
     </div>
+    <footer class="footer">
+      <p class="details">Thanks for your contributions!</p>
+      <p>
+        *Search Database courtesy of
+        <img class="logo" src="bible-api-logo.svg" alt="logo" />
+      </p>
+    </footer>
   </body>
 </html>

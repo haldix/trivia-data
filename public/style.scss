@@ -9,7 +9,7 @@ $color-primary: #333;
 body {
   color: $color-primary;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(194, 226, 238);
+  background-color: #c2e2ee;
 }
 
 .header {
@@ -45,11 +45,11 @@ body {
 .container {
   max-width: 1000px;
   padding: 0 1rem;
-  margin: 0 auto 2rem auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // margin: 0 auto 2rem auto;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
 }
 
 h1 {
@@ -57,11 +57,103 @@ h1 {
   text-align: center;
 }
 
+.title-contrib {
+  margin-bottom: 1.7rem;
+}
+
+.details {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+}
+
+.search-cont {
+  margin: 1rem auto;
+  max-width: 60vw;
+  padding: 1rem;
+}
+
+.input-cont {
+  display: flex;
+}
+
+.input-search {
+  background-color: #fff;
+  font-size: 1.2rem;
+  outline: none;
+  float: left;
+  flex: 1;
+  padding: 0.3em 0.5em;
+  border: 2px solid #333;
+  border-right: 0;
+  border-radius: 3px 0 0 3px;
+  transition: all 0.3s;
+
+  &:focus {
+    background-color: #eaeaea;
+  }
+}
+
+.btn-search {
+  font-size: 1.2rem;
+  outline: none;
+  border: 2px solid #333;
+  border-left: 0;
+  cursor: pointer;
+  border-radius: 0 3px 3px 0;
+  padding: 0.3em 0.5em;
+  transition: all 0.3s;
+}
+
+.btn-submit {
+  background-color: #ababff;
+
+  &:hover,
+  &:focus {
+    background-color: darken(#ababff, 15%);
+  }
+}
+
+.btn-clear {
+  display: none;
+  background-color: #ff3b3b;
+
+  &:hover,
+  &:focus {
+    background-color: darken(#ff3b3b, 15%);
+  }
+}
+
+.list-search {
+  width: 70vw;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.list-search__item {
+  border: 2px solid #ddd;
+  padding: 0.7rem;
+}
+
+.list-search__item:not(last-of-type) {
+  border-bottom: 0;
+}
+
+.list-search__item:nth-of-type(even) {
+  background-color: #ffe1e1;
+}
+
+.reference {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
 h3 {
   margin-top: 2rem;
 }
 
-.form {
+.form-data {
   width: 45vw;
   min-width: 300px;
   background-color: #fafafa;
@@ -238,6 +330,24 @@ hr.break {
   .difficulty {
     margin: 1rem 0;
   }
+}
+
+// Footer
+.footer {
+  background-color: darken(#c2e2ee, 20%);
+  color: #000;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.logo {
+  margin: -0rem 0 -0.1rem 0.2rem;
+  height: 0.8rem;
+}
+
+// Utilities
+.hide {
+  display: none;
 }
 
 .show {

@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('form');
+  const dataForm = document.getElementById('form-data');
   // const btnSubmit = document.getElementById('btn-submit');
-  const inputVals = document.querySelectorAll('input[type="text"]');
+  const inputVals = dataForm.querySelectorAll('input[type="text"]');
   const btnList = document.getElementById('btn-list');
   const btnRefresh = document.getElementById('btn-refresh');
   const select = document.getElementById('select');
   const sorting = document.getElementById('sorting');
-  const firstInput = document.querySelector('input[name="question"]');
-  firstInput.focus();
+  // const firstInput = document.querySelector('input[name="question"]');
+  // firstInput.focus();
   const savedData = document.getElementById('saved-data');
   const countText = document.getElementById('count-text');
   const btnNext = document.getElementById('btn-next');
@@ -55,10 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const myForm = e.target;
     const fd = new FormData(myForm);
-    form.reset();
+    dataForm.reset();
     const jsonData = await convertFDtoJSON(fd);
 
-    // send the request with the formdata to server
+    // send the request with the form data to server
     const h = new Headers();
     h.append('Content-type', 'application/json');
 
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await fetchData(nextPage);
   });
 
-  form.addEventListener('submit', handleForm);
+  dataForm.addEventListener('submit', handleForm);
   inputVals.forEach((el) => el.addEventListener('blur', valLength));
   btnList.addEventListener('click', showList);
   btnRefresh.addEventListener('click', refreshData);
