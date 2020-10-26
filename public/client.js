@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPrev = document.getElementById('btn-prev');
   const toggles = document.querySelectorAll('.toggle');
 
-  const url = 'http://localhost:3000/trivia';
-  // const url = 'https://trivia-data-api.herokuapp.com/trivia';
+  // const url = 'http://localhost:3000/trivia';
+  const url = 'https://trivia-data-api.herokuapp.com/trivia';
 
   // wake heroku back-end server on page load
   async function wakeHeroku() {
@@ -62,10 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const jsonData = await convertFDtoJSON(fd);
 
     // send the request with the form data to server
+    const reviewUrl = `${url}/review`;
     const h = new Headers();
     h.append('Content-type', 'application/json');
 
-    const req = new Request(url, {
+    const req = new Request(reviewUrl, {
       headers: h,
       body: jsonData,
       method: 'POST',
