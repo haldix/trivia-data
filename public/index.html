@@ -20,7 +20,7 @@
       </h2>
 
       <!-- Data Form -->
-      <section class="data-form">
+      <section class="section">
         <form class="form-data" id="form-data">
           <p class="instructions">
             Please fill in all fields and limit question to 100 characters and
@@ -73,8 +73,8 @@
 
       <!-- Search -->
       <section class="search">
-        <div class="search-cont">
-          <p class="details">
+        <div class="search__cont">
+          <p class="search__details">
             Search The King James Version of The Bible. Results will be verses
             which containin the keywords.*
           </p>
@@ -107,8 +107,10 @@
 
       <!-- Show Saved Data -->
       <section class="show-data">
-        <p class="details">
-          View questions and answers already in the Bible Trivia database.
+        <h2 class="data-results-title">
+          View questions and answers already in the Bible Trivia database
+        </h2>
+        <p class="data-details">
           Recently submitted entries may not be shown pending review.
         </p>
         <div class="btn-cont">
@@ -129,7 +131,7 @@
         </div>
         <p id="count-text" class="count-text toggle"></p>
         <div id="saved-data" class="data"></div>
-        <div class="pagination">
+        <div class="btn-cont pagination">
           <button id="btn-prev" class="btn btn-page toggle" disabled>
             <span><&nbsp;</span>Prev
           </button>
@@ -140,7 +142,7 @@
       </section>
     </div>
     <footer class="footer">
-      <p class="details">Thanks for your contributions!</p>
+      <p class="footer__details">Thanks for your contributions!</p>
       <p>
         *Search Database courtesy of
         <img class="logo" src="bible-api-logo.svg" alt="logo" />

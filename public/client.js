@@ -165,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function fetchSearch(e) {
     e.preventDefault();
     const keywords = searchInput.value;
+    if (!keywords) return;
     const bibleVersionID = 'de4e12af7f28f599-01';
     const offset = 0;
     const limit = 20;
@@ -196,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .map(
         (v) =>
           `<li class='list-search__item'>
-          <p class="reference">${v.reference}</p>
+          <p class="search__reference">${v.reference}</p>
           <p>${v.text}</p>
         </li>`
       )
