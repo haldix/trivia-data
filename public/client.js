@@ -92,12 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
       .map(
         (q) =>
           `<div class='card'>
-            <p class='question'>${q.question}</p>
-            <ul class="list">
+            <p class='question' aria-label="question">${q.question}</p>
+            <ul class="list" role="list" aria-label="possible answers">
               <li class='item-correct'>${q.correct_answer}</li>
               <li>${q.wrong_answers[0]}</li>
               <li>${q.wrong_answers[1]}</li>
-              <li>${q.wrong_answers[2]}</li>
+              <liS>${q.wrong_answers[2]}</liS>
             </ul>
             <p class='difficulty'>difficulty: ${q.difficulty}</p>
           </div>`
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
   dataForm.addEventListener('submit', handleForm);
   inputVals.forEach((el) => el.addEventListener('blur', valLength));
   btnList.addEventListener('click', showList);
-  btnRefresh.addEventListener('click', refreshData);
+  // btnRefresh.addEventListener('click', refreshData);
   select.addEventListener('change', sortLevel);
   btnSearch.addEventListener('click', fetchSearch);
   btnClearSearch.addEventListener('click', clearSearch);

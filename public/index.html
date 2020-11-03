@@ -94,14 +94,19 @@
               >
                 Search
               </button>
-              <button id="btn-clear" class="btn-search btn-clear" type="button">
+              <button
+                id="btn-clear"
+                class="btn-search btn-clear"
+                type="button"
+                aria-label="clear input field and results"
+              >
                 Clear
               </button>
             </div>
           </form>
         </div>
         <h2 id="hdg-results"></h2>
-        <ul id="list-search" class="list-search"></ul>
+        <ul id="list-search" class="list-search" role="list"></ul>
       </section>
       <hr class="break" aria-hidden="true" />
 
@@ -111,7 +116,8 @@
           View questions and answers already in the Bible Trivia database
         </h2>
         <p class="data-details">
-          Recently submitted entries may not be shown pending review.
+          Recently submitted entries may not be shown pending review. The first
+          answer is the correct one.
         </p>
         <div class="btn-cont">
           <button id="btn-list" class="btn btn-list">
@@ -125,18 +131,18 @@
               <option value="hard">Hard Only</option>
             </select>
           </form>
-          <button id="btn-refresh" class="btn btn-refresh toggle">
+          <!-- <button id="btn-refresh" class="btn btn-refresh toggle">
             Refresh
-          </button>
+          </button> -->
         </div>
-        <p id="count-text" class="count-text toggle"></p>
+        <h3 id="count-text" class="count-text toggle"></h3>
         <div id="saved-data" class="data"></div>
         <div class="btn-cont pagination">
           <button id="btn-prev" class="btn btn-page toggle" disabled>
-            <span><&nbsp;</span>Prev
+            <span aria-hidden="true"><&nbsp;</span>Prev
           </button>
           <button id="btn-next" class="btn btn-page toggle">
-            Next<span>&nbsp;></span>
+            Next<span aria-hidden="true">&nbsp;></span>
           </button>
         </div>
       </section>
