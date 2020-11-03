@@ -45,7 +45,7 @@ body {
 
 .container {
   max-width: 1000px;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   margin: 0 auto;
 }
 
@@ -153,6 +153,10 @@ h2 {
 .data-details {
   max-width: 60vw;
   font-size: 1.1rem;
+
+  @media (max-width: 770px) {
+    max-width: 90vw;
+  }
 }
 
 .btn-cont {
@@ -229,7 +233,7 @@ hr.break {
   word-break: break-all;
 
   @media (max-width: 770px) {
-    width: 65vw;
+    width: 85vw;
   }
 
   .list {
@@ -271,6 +275,10 @@ hr.break {
   margin: 1rem auto;
   max-width: 60vw;
   padding: 1rem;
+
+  @media (max-width: 770px) {
+    max-width: 90vw;
+  }
 }
 
 .input-cont {
@@ -361,7 +369,10 @@ hr.break {
   &__details {
     font-size: 1.1rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
   }
 }
 
