@@ -216,6 +216,7 @@ h2 {
 hr.break {
   width: 75%;
   border-top: 1px solid $color-primary;
+  margin: 0 auto;
 }
 
 .card {
@@ -274,6 +275,7 @@ hr.break {
 
 .input-cont {
   display: flex;
+  justify-content: center;
 }
 
 .input-search {

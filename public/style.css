@@ -232,6 +232,7 @@ h2 {
 hr.break {
   width: 75%;
   border-top: 1px solid #333;
+  margin: 0 auto;
 }
 
 .card {
@@ -293,6 +294,9 @@ hr.break {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .input-search {
