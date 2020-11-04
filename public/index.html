@@ -9,6 +9,7 @@
   </head>
   <body>
     <header class="header">
+      <div class="sr-only" role="status" aria-live="polite"></div>
       <div class="db-on">
         Database: <span id="db-text" class="db-text">OFF</span>
       </div>
@@ -74,7 +75,7 @@
       <!-- Search -->
       <section class="search">
         <div class="search__cont">
-          <p class="search__details">
+          <p id="search-details" class="search__details" tabindex="-1">
             Search The King James Version of The Bible. Results will be verses
             which containin the keywords.*
           </p>
@@ -105,7 +106,7 @@
             </div>
           </form>
         </div>
-        <h2 id="hdg-results" tabindex="-1"></h2>
+        <h2 id="hdg-results" class="search-results" tabindex="-1"></h2>
         <ul id="list-search" class="list-search" role="list"></ul>
         <a id="search-link" href="#hdg-results">Back to Start of Results</a>
       </section>

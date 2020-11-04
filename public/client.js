@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const liveRegion = document.querySelector('[role="status"]');
   const dataForm = document.getElementById('form-data');
   const inputVals = dataForm.querySelectorAll('input[type="text"]');
   const searchForm = document.getElementById('form-search');
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnClearSearch = document.getElementById('btn-clear');
   const hdgResults = document.getElementById('hdg-results');
   const searchList = document.getElementById('list-search');
+  const searchDetails = document.getElementById('search-details');
   const searchLink = document.getElementById('search-link');
   const btnList = document.getElementById('btn-list');
   const btnRefresh = document.getElementById('btn-refresh');
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (json.connected) {
       dbText.innerText = 'ON';
       dbText.classList.add('connected');
+      liveRegion.innerText = 'database connected';
     }
   }
   wakeHeroku();
@@ -217,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchList.innerHTML = '';
     hdgResults.innerHTML = '';
     searchLink.classList.remove('show');
-    searchInput.focus();
+    searchDetails.focus();
   }
 
   // Event Listeners

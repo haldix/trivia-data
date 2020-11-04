@@ -240,6 +240,10 @@ h2 {
   padding: 0.3em;
 }
 
+.count-text:focus {
+  outline: 2px solid #62c7e9;
+}
+
 hr.break {
   width: 75%;
   border-top: 1px solid #333;
@@ -292,7 +296,12 @@ hr.break {
 .search__details {
   font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 1.1rem;
+  padding: 0.3em;
+  margin-bottom: 1rem;
+}
+
+.search__details:focus {
+  outline: 2px solid #62c7e9;
 }
 
 .search__cont {
@@ -314,6 +323,10 @@ hr.break {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.search-results:focus {
+  outline: 2px solid #62c7e9;
 }
 
 .input-search {
@@ -421,7 +434,7 @@ hr.break {
 
 .logo {
   margin: -0rem 0 -0.1rem 0.2rem;
-  height: 0.8rem;
+  height: 0.9rem;
 }
 
 .hide {
@@ -430,5 +443,14 @@ hr.break {
 
 .show {
   display: block !important;
+}
+
+.sr-only {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  padding: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
 }
 /*# sourceMappingURL=style.css.map */
