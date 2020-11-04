@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnClearSearch = document.getElementById('btn-clear');
   const hdgResults = document.getElementById('hdg-results');
   const searchList = document.getElementById('list-search');
+  const searchLink = document.getElementById('search-link');
   const btnList = document.getElementById('btn-list');
   const btnRefresh = document.getElementById('btn-refresh');
   const select = document.getElementById('select');
@@ -91,19 +92,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const html = questions
       .map(
         (q) =>
-          `<div class='card'>
+          `<li class='card'>
             <p class='question' aria-label="question">${q.question}</p>
             <ul class="list" role="list" aria-label="possible answers">
               <li class='item-correct'>${q.correct_answer}</li>
               <li>${q.wrong_answers[0]}</li>
               <li>${q.wrong_answers[1]}</li>
-              <liS>${q.wrong_answers[2]}</liS>
+              <li>${q.wrong_answers[2]}</li>
             </ul>
             <p class='difficulty'>difficulty: ${q.difficulty}</p>
-          </div>`
+          </li>`
       )
       .join('');
     savedData.innerHTML = html;
+    countText.focus();
   }
 
   // Fetch sorted and paginated data from server
@@ -204,6 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
       )
       .join('');
     searchList.innerHTML = html;
+    searchLink.classList.add('show');
+    hdgResults.focus();
   }
 
   function clearSearch() {
@@ -212,6 +216,8 @@ document.addEventListener('DOMContentLoaded', () => {
     searchForm.reset();
     searchList.innerHTML = '';
     hdgResults.innerHTML = '';
+    searchLink.classList.remove('show');
+    searchInput.focus();
   }
 
   // Event Listeners

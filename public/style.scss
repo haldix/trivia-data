@@ -146,6 +146,10 @@ h2 {
   margin: 0 auto;
 }
 
+.saved-data {
+  list-style: none;
+}
+
 .data-results-title {
   margin: 2rem 0 1rem 0;
 }
@@ -214,7 +218,8 @@ h2 {
   text-align: center;
   font-weight: bold;
   display: none;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
+  padding: 0.3em;
 }
 
 hr.break {
@@ -359,6 +364,16 @@ hr.break {
   margin-bottom: 0.6rem;
 }
 
+#search-link {
+  display: none;
+  text-align: center;
+  margin-top: 1rem;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 // Footer
 .footer {
   background-color: darken(#c2e2ee, 20%);
@@ -383,9 +398,9 @@ hr.break {
 
 // Utilities
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .show {
-  display: block;
+  display: block !important;
 }
