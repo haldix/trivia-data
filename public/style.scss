@@ -14,33 +14,61 @@ body {
 
 .header {
   display: flex;
-  justify-content: center;
-  align-items: start;
-  padding: 0.6rem;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 1rem;
   color: #fff;
   background-color: $color-primary;
   margin-bottom: 2rem;
 
-  // Database connected
-  .db-on {
-    margin-left: 33%;
-    font-size: 0.7rem;
-  }
-
-  .db-text {
-    font-size: 0.8em;
-    background-color: #f00;
-    font-weight: bold;
+  &__cont-links {
     display: inline-block;
-    border: solid 1px #ddd;
-    border-radius: 20%;
-    padding: 0.2em 0.4em;
+    color: #fff;
+    padding: 1rem 2rem;
+    transition: all 0.3s;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      display: block;
+      text-align: center;
+      padding-top: 0;
+    }
   }
 
-  .connected {
-    background-color: #0f0;
-    color: #333;
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    &__cont-links {
+      display: block;
+      text-align: center;
+      padding-top: 0;
+    }
   }
+}
+
+// Database connected
+.db-on {
+  padding: 1rem;
+  justify-self: end;
+  font-size: 0.7rem;
+}
+
+.db-text {
+  font-size: 0.8em;
+  background-color: #f00;
+  font-weight: bold;
+  display: inline-block;
+  border: solid 1px #ddd;
+  border-radius: 20%;
+  padding: 0.2em 0.4em;
+}
+
+.connected {
+  background-color: #0f0;
+  color: #333;
 }
 
 .container {
@@ -270,28 +298,24 @@ hr.break {
 }
 
 // Search
-.search {
-  padding: 2rem;
+
+.search__cont {
+  margin: 1rem auto 2.5rem auto;
+  max-width: 60vw;
+
+  @media (max-width: 770px) {
+    max-width: 90vw;
+  }
 }
 
 .search__details {
   font-size: 1.2rem;
   font-weight: bold;
-  padding: 0.3em;
+  padding: 0.3em 0;
   margin-bottom: 1rem;
 
   &:focus {
     outline: 2px solid rgb(98, 199, 233);
-  }
-}
-
-.search__cont {
-  margin: 1rem auto;
-  max-width: 60vw;
-  padding: 1rem;
-
-  @media (max-width: 770px) {
-    max-width: 90vw;
   }
 }
 
@@ -312,10 +336,11 @@ hr.break {
   outline: none;
   float: left;
   flex: 1;
-  padding: 0.3em 0.5em;
+  padding: 0.3em 0 0 0.5em;
   border: 2px solid #333;
   border-right: 0;
   border-radius: 3px 0 0 3px;
+  margin-left: 0.5rem;
   transition: all 0.3s;
 
   &:focus {
@@ -331,6 +356,7 @@ hr.break {
   cursor: pointer;
   border-radius: 0 3px 3px 0;
   padding: 0.3em 0.5em;
+  margin-right: 0.5rem;
   transition: all 0.3s;
 }
 
@@ -354,10 +380,14 @@ hr.break {
 }
 
 .list-search {
-  width: 70vw;
+  width: 65vw;
   padding: 0;
   margin: 0 auto;
   list-style: none;
+
+  @media (max-width: 770px) {
+    width: 85vw;
+  }
 }
 
 .list-search__item {
