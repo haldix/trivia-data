@@ -170,6 +170,12 @@ h2 {
   background-color: #c30000;
 }
 
+.form-data input[type='submit']:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 0 2px #000085;
+          box-shadow: 0 0 0 2px #000085;
+}
+
 .form-data .difficulty-instr {
   margin-top: 1.2rem;
 }
@@ -231,6 +237,12 @@ h2 {
   margin-right: 1.5rem;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
+}
+
+.btn:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 0 2px #000085;
+          box-shadow: 0 0 0 2px #000085;
 }
 
 .btn-list {

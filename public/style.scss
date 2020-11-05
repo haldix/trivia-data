@@ -71,6 +71,7 @@ body {
   color: #333;
 }
 
+// General
 .container {
   max-width: 1000px;
   padding: 0 1.5rem;
@@ -152,6 +153,11 @@ h2 {
     &:hover {
       background-color: rgb(195, 0, 0);
     }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgb(0, 0, 133);
+    }
   }
 
   .difficulty-instr {
@@ -205,6 +211,11 @@ h2 {
   border-radius: 0.3em;
   margin-right: 1.5rem;
   transition: all 0.3s ease-in;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(0, 0, 133);
+  }
 }
 
 .btn-list {
